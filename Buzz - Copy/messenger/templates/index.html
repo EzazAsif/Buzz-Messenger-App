@@ -1,0 +1,61 @@
+<<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>Home</title>
+    {%load static%}
+    <link rel="stylesheet"
+          href="{%static 'index.css'%}">
+</head>
+ 
+<body>
+    <div class="main">
+        {%block home%}
+        <img src="{%static 'bee.png'%}" alt="Icon" width="50" height="60">
+        <h1>BUZZ </h1><i class="fa-solid fa-bee"></i>
+        <h3>Enter your login credentials</h3>
+        <form action="/home/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="alert alert-warning" role="alert">
+      {% if messages %}
+         <ul class="messages">
+          {% for message in messages %}
+                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+          </ul>
+       {% endif %}
+            <label for="first">
+                  Email:
+              </label>
+            <input type="email"
+                   id="first"
+                   name="first"
+                   placeholder="Enter your Email" required>
+ 
+            <label for="password">
+                  Password:
+              </label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="Enter your Password" required>
+ 
+            <div class="wrap">
+                <button type="submit"
+                        onclick="solve()">
+                    Submit
+                </button>
+            </div>
+        </form>
+        <p>Not registered? 
+              <a href="/register/"
+               style="text-decoration: none;">
+                Create an account
+            </a>
+        </p>
+        {%endblock%}
+    </div>
+    <h3>By Ezaz Asif Rafid</h3>
+</body>
+ 
+</html>

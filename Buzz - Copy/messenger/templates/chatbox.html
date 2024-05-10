@@ -1,0 +1,23 @@
+<div id="messages-container">
+    {% for m in messages %}
+        {% if m.sender == chatuser.id %}
+            <div class="row message-body">
+                <div class="col-sm-12 message-main-receiver">
+                    <div class="receiver">
+                        <div class="message-text">{{ m.message }}</div>
+                        <span class="message-time pull-right">{{ m.time_sent }}</span>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row message-body">
+                <div class="col-sm-12 message-main-sender">
+                    <div class="sender">
+                        <div class="message-text">{{ m.message }}</div>
+                        <span class="message-time pull-right">{{ m.time_sent }}</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
