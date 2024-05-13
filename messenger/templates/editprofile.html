@@ -1,0 +1,46 @@
+{%extends "index.html"%}
+{%block home%}
+<form action="/editprofile/" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="alert alert-warning" role="alert">
+      {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+    {% endif %}
+    </div>
+    
+    <div class="container">
+      <h1>Edit Profile</h1>
+      <p>Please fill in this form to Edit your profile.</p>
+      <hr>
+      <label for="First Name"><b>First Name</b></label>
+      <input type="text" value="{{request.user.first_name}}" name="FirstName" id="FirstName" required>
+
+      <label for="Last Name"><b>Last Name</b></label>
+      <input type="text" value="{{request.user.last_name}}" name="LastName" id="LastName" required>
+
+      <label for="email"><b>Email</b></label>
+      <input type="email" value="{{request.user.email}}" name="email" id="email" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" >
+  
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" >
+
+      <label for="editpp"><b>Add profile picture</b></label>
+      <input type="file" value="" placeholder="" name="editpp" id="editpp" >
+      <hr>
+  
+      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+      <button type="submit" class="savebtn">Save</button>
+    </div>
+  
+    <div class="container signin">
+      <p>Already have an account? <a href="/">Sign in</a>.</p>
+    </div>
+  </form>
+  {%endblock%}
